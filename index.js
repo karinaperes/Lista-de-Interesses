@@ -1,4 +1,3 @@
-/** Implemente seu código abaixo. Boa sorte! */
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-add').addEventListener('click', addItem);
     document.getElementById('btn-clear').addEventListener('click', clearList);
@@ -28,7 +27,7 @@ function addItem() {
 
 function addItemLista(item) {
     const lista = document.getElementById('lista')
-    const novoItem = document.createElement('li')
+    const novoItem = document.createElement('li')    
     const checkbox = document.createElement('input')
 
     checkbox.type = 'checkbox'
@@ -43,11 +42,18 @@ function addItemLista(item) {
     })
 
     const itemText = document.createElement('span')
-
     itemText.textContent = item
+
+    const deleteButton = document.createElement('button')
+    deleteButton.textContent = 'Excluir'
+    deleteButton.className = 'btn-delete'
+    deleteButton.addEventListener('click', function() {
+        deleteItem(item, novoItem)
+    })
 
     novoItem.appendChild(checkbox)
     novoItem.appendChild(itemText)
+    novoItem.appendChild(deleteButton)
     lista.appendChild(novoItem)
 }
 
@@ -67,6 +73,12 @@ function loadLista() {
 function clearList() {
     localStorage.removeItem('itens')
     document.getElementById('lista').innerHTML = ''
+}
+
+function deleteItem(item, itemElement) {
+    let itens = JSON.parse(localStorage.getItem('itens')) || [];
+    localStorage.setItem('itens', JSON.stringify(itens.filter(i => i !== item)));
+    itemElement.remove();
 }
 
 async function noticiaPatrocinada() {
