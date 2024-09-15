@@ -29,3 +29,6 @@
 Clone este repositório: git clone https://github.com/karinaperes/Lista-de-Interesses.git
 
 Abra o arquivo index.html em seu navegador
+
+
+![imagem](./assets/tela-lista-interesses.png)
